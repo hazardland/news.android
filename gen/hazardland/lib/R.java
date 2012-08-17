@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package hazardland.notes;
+package hazardland.lib;
 
 public final class R {
     public static final class attr {
