@@ -1,36 +1,56 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    
-    
-    <LinearLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="30dp"
-    android:background="black"
+    android:layout_height="match_parent"
     >
+    
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
 
-        <ImageButton
-            android:id="@+id/imageButton1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_menu_add" />
-            
-    </LinearLayout>    
-    <LinearLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    >
+	    <LinearLayout
+	        android:id="@+id/layoutBarDefault"
+	        android:layout_width="fill_parent"
+	        android:layout_height="50dp"
+	        android:background="@android:color/background_dark"
+	        android:orientation="horizontal"
+	        android:paddingTop="3dp" >
+
+	        <ImageButton
+	            android:id="@+id/imageButton1"
+	            android:contentDescription="Add"
+	            android:layout_width="47dp"
+	            android:layout_height="47dp"
+	            android:src="@android:drawable/ic_menu_add" />
+
+	        <EditText
+	            android:id="@+id/editText1"
+	            android:layout_width="wrap_content"
+	            android:layout_height="47dp"
+	            android:layout_weight="1"
+	            android:ems="10" 
+				android:textSize="20dp"
+				>
+
+	        </EditText>
+	        
+	        <ImageButton
+	            android:id="@+id/imageButton1"
+	            android:contentDescription="Search"
+	            android:layout_width="47dp"
+				android:layout_height="47dp"	            
+	            android:src="@android:drawable/ic_menu_search" />
+
+        </LinearLayout>    
+
 	    <ListView
 	        android:id="@+id/listNotes"
-	        android:layout_width="match_parent"
-	        android:layout_height="fill_parent"
-	        android:layout_alignParentTop="true"
-	        android:layout_centerHorizontal="true"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
 	        android:layout_margin="@dimen/padding_medium" >
 	    </ListView>
-	        
-    </LinearLayout>
 
+</LinearLayout>
 
 </RelativeLayout>
