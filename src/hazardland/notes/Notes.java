@@ -35,13 +35,16 @@ public class Notes extends Activity
 		notesList.setAdapter (notesAdapter);
 		registerForContextMenu(notesList);
 		
-		String[] files = Files.list ("/sdcard/biohazard/oneonote/");
+		String[] files = Files.list ("/mnt/sdcard/hazardland/docs/onenote");
 		
-		for (String file : files)
+		if (files!=null)
 		{
-			add (new Note(-1, file));
+			for (String file : files)
+			{
+				add (new Note(-1, file));
+			}
 		}
-		
+
 //		add (new Note (1, "dadada"));
 //		add (new Note (2, "dadada"));
 //		add (new Note (3, "dadada"));
