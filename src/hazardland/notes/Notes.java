@@ -41,7 +41,7 @@ public class Notes extends Activity
 		{
 			for (String file : files)
 			{
-				add (new Note(-1, file));
+				add (new Note(file));
 			}
 		}
 
