@@ -21,8 +21,9 @@ import android.widget.ListView;
 public class Notes extends Activity
 {
 	public ListView notesList;
-	ArrayList <Note> notes;
-	Adapter notesAdapter;	
+	hazardland.notes.db.Notes notes;
+	ArrayList <Note> items;
+	Adapter notesAdapter;
 
 	@Override
 	public void onCreate (Bundle savedInstanceState)
@@ -30,20 +31,29 @@ public class Notes extends Activity
 		super.onCreate (savedInstanceState);
 		setContentView (R.layout.notes);
 		notesList = (ListView) findViewById (R.id.listNotes);
-		notes = new ArrayList <Note> ();
-		notesAdapter = new Adapter (Notes.this, R.layout.item, notes);
+		items = new ArrayList <Note> ();
+		notesAdapter = new Adapter (Notes.this, R.layout.item, items);
 		notesList.setAdapter (notesAdapter);
 		registerForContextMenu(notesList);
+		notes = new hazardland.notes.db.Notes (getBaseContext());
 		
-		String[] files = Files.list ("/mnt/sdcard/hazardland/docs/onenote");
+		notes.save (new Note("first note"));
+		notes.save (new Note("second note"));
+		notes.save (new Note("third note"));
 		
-		if (files!=null)
-		{
-			for (String file : files)
-			{
-				add (new Note(file));
-			}
-		}
+		items = notes.load();
+		
+//		String[] files = Files.list ("/mnt/sdcard/hazardland/docs/onenote");
+//		
+//		if (files!=null)
+//		{
+//			for (String file : files)
+//			{
+//				add (new Note(file));
+//			}
+//		}
+		
+		
 
 //		add (new Note (1, "dadada"));
 //		add (new Note (2, "dadada"));
@@ -66,11 +76,7 @@ public class Notes extends Activity
 	
 	public void add (Note note)
 	{
-		if (note.id==-1)
-		{
-			note.id = notes.size ();
-		}
-		notes.add (note);
+		items.add (note);
 	}
 
 	@Override
@@ -96,7 +102,7 @@ public class Notes extends Activity
 		 
 					// set dialog message
 					alertDialogBuilder
-						.setMessage("Delete note "+notes.get((int) info.id).name+"?")
+						.setMessage("Delete note "+items.get((int) info.id).name+"?")
 						.setCancelable(false)
 						.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog,int id) {
@@ -113,8 +119,6 @@ public class Notes extends Activity
 		 
 						// show it
 						alertDialog.show();
-					
-		
 		
 	    		return true;
 		    	default:

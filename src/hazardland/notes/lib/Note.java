@@ -2,7 +2,7 @@ package hazardland.notes.lib;
 
 public class Note
 {
-	public int id;
+	public Integer id;
 	public String name;
 	public String date;
 	public int color;
