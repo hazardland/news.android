@@ -58,6 +58,7 @@ public class Notes extends Activity
 //		add (new Note (1, "dadada"));
 //		add (new Note (2, "dadada"));
 //		add (new Note (3, "dadada"));
+		//
 		
 		debug ("items count is " + items.size());
 		
