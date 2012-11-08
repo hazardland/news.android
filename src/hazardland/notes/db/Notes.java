@@ -23,9 +23,9 @@ public class Notes extends SQLiteOpenHelper
 	
 	private static final String CREATE = "create table " + TABLE + "(" 
 			  + FIELD_ID + " integer primary key autoincrement, " 
-			  + FIELD_NAME + " text not null"
-			  + FIELD_DATE + " text not null"
-			  + FIELD_COLOR + " int"
+			  + FIELD_NAME + " text not null,"
+			  + FIELD_DATE + " text not null,"
+			  + FIELD_COLOR + " int,"
 			  + FIELD_IMAGE + " int"
 			  + ");";
 
@@ -44,19 +44,6 @@ public class Notes extends SQLiteOpenHelper
 	public void onUpgrade (SQLiteDatabase database, int from, int to) 
 	{
 		 database.execSQL ("DROP TABLE IF EXISTS " + TABLE);
-	}
-	
-	public void add (Note note)
-	{
-		SQLiteDatabase database = this.getWritableDatabase ();
-		ContentValues values = new ContentValues ();
-		
-		values.put(FIELD_NAME, note.name);
-		values.put(FIELD_DATE, note.date);
-		values.put(FIELD_COLOR, note.color);
-		values.put(FIELD_IMAGE, note.image);
-		
-		database.insert (TABLE, null, values);
 	}
 	
 	public Note load (int id)
@@ -89,12 +76,71 @@ public class Notes extends SQLiteOpenHelper
 		  {
 			  do
 			  {
-				  result.add (Integer.parseInt(cursor.getString(0)), new Note(Integer.parseInt(cursor.getString(0)), cursor.getString(1), cursor.getString(2), Integer.parseInt(cursor.getString(3)), Integer.parseInt(cursor.getString(4))));
+				  result.add (new Note(
+						  cursor.getInt(0), 
+						  cursor.getString(1), 
+						  cursor.getString(2), 
+						  cursor.getInt(3), 
+						  cursor.getInt(4)));
 			  }
 			  while (cursor.moveToNext());
 		  }
+		  debug ("row count is "+cursor.getCount());
+		  database.close();
 		  return result;
 	}
 
+	
+	public boolean save (Note note)
+	{
+		int result = 0;
+		SQLiteDatabase database = this.getWritableDatabase ();
+		ContentValues values = new ContentValues ();
+
+		values.put(FIELD_NAME, note.name);
+		values.put(FIELD_DATE, "1");
+		values.put(FIELD_COLOR, note.color);
+		values.put(FIELD_IMAGE, note.image);
+		
+		if (note.id==null)
+		{
+			result = (int) database.insert (TABLE, null, values);
+			if (result>0)
+			{
+				note = load (result);
+				database.close();
+				return true;
+			}
+		}
+		else
+		{
+			result = database.update (TABLE, values, FIELD_ID + " = ?", new String[] {String.valueOf(note.id)});
+			if (result>0)
+			{
+				note = load (note.id);
+				database.close();
+				return true;				
+			}
+		}
+		database.close();
+		return false;
+	}
+	
+    public boolean delete (Note note) 
+    {
+        SQLiteDatabase database = this.getWritableDatabase();
+        if (database.delete (TABLE, FIELD_ID + " = ?", new String[] {String.valueOf(note.id)})>0)
+        {
+        	database.close();
+        	return true;
+        }
+        database.close();
+        return false;
+    }
+    
+    public void debug (String message)
+    {
+    	System.out.println (getClass().getName() + ": " + message);
+    }
 
 }
