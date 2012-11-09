@@ -1,12 +1,18 @@
 package hazardland.notes.lib;
 
-public class Note
+import hazardland.lib.db.Entity;
+
+public class Note extends Entity
 {
 	public Integer id;
 	public String name;
 	public String date;
-	public int color;
-	public int image;
+	public Integer color;
+	public Integer image;
+	public Note ()
+	{
+		
+	}
 	public Note (String name)
 	{
 		this.name = name;

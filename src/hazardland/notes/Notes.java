@@ -2,6 +2,8 @@ package hazardland.notes;
 
 import java.util.ArrayList;
 
+import hazardland.lib.db.*;
+
 import hazardland.notes.lib.Adapter;
 import hazardland.notes.lib.Note;
 import android.os.Bundle;
@@ -20,7 +22,8 @@ import android.widget.ListView;
 public class Notes extends Activity
 {
 	public ListView notesList;
-	hazardland.notes.db.Notes notes;
+	//hazardland.notes.db.Notes notes;
+	Table<Note> notes;
 	ArrayList <Note> items;
 	Adapter notesAdapter;
 
@@ -34,7 +37,9 @@ public class Notes extends Activity
 		notesAdapter = new Adapter (Notes.this, R.layout.item, items);
 		notesList.setAdapter (notesAdapter);
 		registerForContextMenu(notesList);
-		notes = new hazardland.notes.db.Notes (getBaseContext());
+		//notes = new hazardland.notes.db.Notes (getBaseContext());
+		
+		notes = new Table<Note>(getBaseContext(), "notes", new Note("").getClass(), 4);
 		
 		notes.save (new Note("first note"));
 		notes.save (new Note("second note"));
@@ -62,8 +67,8 @@ public class Notes extends Activity
 		
 		debug ("items count is " + items.size());
 		
-		add (new Note("third note"));
-		add (new Note("third note"));
+//		add (new Note("third note"));
+//		add (new Note("third note"));
 		
 		refresh ();
 	}
