@@ -85,7 +85,10 @@ public class Notes extends SQLiteOpenHelper
 			  }
 			  while (cursor.moveToNext());
 		  }
+<<<<<<< HEAD
 		  debug ("row count is "+cursor.getCount());
+=======
+>>>>>>> 493e492af023f59b3492e3abd1cf033d47710f77
 		  database.close();
 		  return result;
 	}
@@ -98,7 +101,11 @@ public class Notes extends SQLiteOpenHelper
 		ContentValues values = new ContentValues ();
 
 		values.put(FIELD_NAME, note.name);
+<<<<<<< HEAD
 		values.put(FIELD_DATE, "1");
+=======
+		values.put(FIELD_DATE, note.date);
+>>>>>>> 493e492af023f59b3492e3abd1cf033d47710f77
 		values.put(FIELD_COLOR, note.color);
 		values.put(FIELD_IMAGE, note.image);
 		
@@ -136,11 +143,15 @@ public class Notes extends SQLiteOpenHelper
         }
         database.close();
         return false;
+<<<<<<< HEAD
     }
     
     public void debug (String message)
     {
     	System.out.println (getClass().getName() + ": " + message);
     }
+=======
+    }	
+>>>>>>> 493e492af023f59b3492e3abd1cf033d47710f77
 
 }

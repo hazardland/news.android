@@ -22,8 +22,12 @@ import android.widget.ListView;
 public class Notes extends Activity
 {
 	public ListView notesList;
+<<<<<<< HEAD
 	//hazardland.notes.db.Notes notes;
 	Table<Note> notes;
+=======
+	hazardland.notes.db.Notes notes;
+>>>>>>> 493e492af023f59b3492e3abd1cf033d47710f77
 	ArrayList <Note> items;
 	Adapter notesAdapter;
 
@@ -37,14 +41,19 @@ public class Notes extends Activity
 		notesAdapter = new Adapter (Notes.this, R.layout.item, items);
 		notesList.setAdapter (notesAdapter);
 		registerForContextMenu(notesList);
+<<<<<<< HEAD
 		//notes = new hazardland.notes.db.Notes (getBaseContext());
 		
 		notes = new Table<Note>(getBaseContext(), "notes", new Note("").getClass(), 4);
+=======
+		notes = new hazardland.notes.db.Notes (getBaseContext());
+>>>>>>> 493e492af023f59b3492e3abd1cf033d47710f77
 		
 		notes.save (new Note("first note"));
 		notes.save (new Note("second note"));
 		notes.save (new Note("third note"));
 		
+<<<<<<< HEAD
 		//items = notes.load();
 		items.addAll(notes.load());
 		
@@ -59,6 +68,21 @@ public class Notes extends Activity
 		}
 		
 		
+=======
+		items = notes.load();
+		
+//		String[] files = Files.list ("/mnt/sdcard/hazardland/docs/onenote");
+//		
+//		if (files!=null)
+//		{
+//			for (String file : files)
+//			{
+//				add (new Note(file));
+//			}
+//		}
+		
+		
+>>>>>>> 493e492af023f59b3492e3abd1cf033d47710f77
 
 //		add (new Note (1, "dadada"));
 //		add (new Note (2, "dadada"));
