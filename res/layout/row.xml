@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/grid_row_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/background_dark"
+        android:orientation="horizontal"
+        android:paddingTop="3dp" >
+
+        <TextView
+            android:id="@+id/grid_row_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="7dp"
+            android:gravity="center_vertical"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@android:color/white" />
+        
+	    <ProgressBar
+	        android:id="@+id/grid_row_progress"
+	        style="?android:attr/progressBarStyleSmallTitle"
+	        android:visibility="invisible"
+	        android:layout_width="20dp"
+	        android:layout_height="20dp"
+	        android:layout_gravity="center_vertical"
+			android:gravity="center_vertical"
+		 />
+    
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/grid_row_load"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/grid_row_bar"
+        android:scaleType="centerInside"
+        />    
+    
+    <hazardland.news.view.Horizontal
+        android:id="@+id/grid_row_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:overScrollMode="always"
+        android:layout_below="@id/grid_row_bar"
+         >
+
+        <LinearLayout
+            android:id="@+id/grid_row"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="#000"
+             >
+
+        </LinearLayout>
+    </hazardland.news.view.Horizontal>
+
+</RelativeLayout>
