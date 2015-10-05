@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hazardland.notes"
     android:versionCode="1"
@@ -14,11 +15,41 @@
         <activity
             android:name=".Notes"
             android:label="@string/title_activity_main" >
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="hazardland.news"
+    android:versionCode="5"
+    android:versionName="0.9.2" >
+
+<uses-sdk android:minSdkVersion="10" android:targetSdkVersion="10" android:maxSdkVersion="17"/>
+<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        android:name="hazardland.news.Main"
+        >
+        <activity
+            android:name="hazardland.news.Board"
+			android:configChanges="orientation|keyboard|keyboardHidden|screenLayout|fontScale|navigation|locale"
+            >
+>>>>>>> 9371c6527aa7c166b9de9b581746fdce4877f291
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
+=======
+        <activity
+            android:name="hazardland.news.Sources"
+			android:configChanges="orientation|keyboard|keyboardHidden|screenLayout|fontScale|navigation|locale"
+            >
+        </activity>        
+>>>>>>> 9371c6527aa7c166b9de9b581746fdce4877f291
     </application>
 
 </manifest>
