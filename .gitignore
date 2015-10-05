@@ -30,7 +30,7 @@ local.properties
 
 
 # built application files
-!*.apk
+!bin/*.apk
 *.ap_
 
 # files for the dex VM
