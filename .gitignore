@@ -50,3 +50,4 @@ local.properties
 !bin/
 bin/*
 !bin/*.apk
+!bin/*.jar
