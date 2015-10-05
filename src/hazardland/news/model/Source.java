@@ -139,7 +139,7 @@ public class Source extends Entity
 	        Query query = new Query(database.table(Topic.class));
 	        query.limit.count = Config.topics;
 	        query.order.method = new Method(Method.DESC);
-	        database.table(Topic.class).of (this, query);
+	        topics = database.table(Topic.class).of (this, query);
 	        if (topics!=null)
 	        {
 	            for (Topic topic: topics)
@@ -174,11 +174,11 @@ public class Source extends Entity
                     }
                 }
                 System.out.println ("high "+high+" vs first "+topics.get(0).id()+" vs last "+topics.get(topics.size()-1).id);
-                query.where.query = "topics.source="+this.id+" and topics.id>"+high;
+                query.where.string = "topic.source="+this.id+" and topic.id>"+high;
             }
             else
             {
-                query.where.query = "topics.source="+this.id;
+                query.where.string = "topic.source="+this.id;
             }
             //database.table(Topic.class).of (this, query);
             ArrayList<Topic> result = Main.database.topics.load(query);
@@ -200,6 +200,10 @@ public class Source extends Entity
             }
             Board.handler.post (new Refresh(this, Source.PREPEND));
         }
+        else
+        {
+        	debug ("vbanaobt");
+        }
     }
 
 	@SuppressWarnings("unchecked")
@@ -210,7 +214,7 @@ public class Source extends Entity
 	        next = new Query(database.table(Topic.class));
 	        next.limit.count = 5;
 	        next.order.method = new Method(Method.DESC);    
-	        next.where.query = "\"topics\".\"source\"="+id;
+	        next.where.string = "\"topic\".\"source\"="+id;
 	    }
 	    
 	    if (topics.size()>0)
@@ -224,7 +228,7 @@ public class Source extends Entity
                 }
             }
             System.out.println ("low "+low+" vs first "+topics.get(0).id()+" vs last "+topics.get(topics.size()-1).id);	        
-	        next.where.query = "\"topics\".\"source\"="+id+" and \"topics\".\"id\"<"+low;
+	        next.where.string = "\"topic\".\"source\"="+id+" and \"topic\".\"id\"<"+low;
 	    }
 	    
 	    //next.limit.from = topics.size();
@@ -247,6 +251,7 @@ public class Source extends Entity
 	    {
 	    	if (database.table(Topic.class)!=null)
 	    	{
+	    		debug ("topic saved "+topic.title);
 	    		database.table(Topic.class).save (topic);
 	    	}
 		    //topics.add (topic);

@@ -44,7 +44,7 @@ public class Database extends hazardland.lib.db.Database
         
         sources.query.order.add (new Order(sources, sources.field("order"), new Method(Method.ASC)));
         sources.query.order.add (new Order(sources, sources.field("id"), new Method(Method.ASC)));
-        sources.query.where.query = "sources.enabled=1";
+        sources.query.where.string = "source.enabled=1";
         
         topics.query.order.method.name = Method.DESC;
         

@@ -69,15 +69,17 @@ public abstract class Parser
 
     public void debug (String message)
     {
-        
+        System.out.println (message);
     }
     
     public boolean exists (String hash)
     {
         Query query = new Query (Main.database.topics);        
-        query.where.query = "\"topics\".\"source\"='"+source+"' and \"topics\".\"hash\"='"+hash+"'";
+        query.where.string = "\"topic\".\"source\"='"+source+"' and \"topic\".\"hash\"='"+hash+"'";
         if (Main.database.topics.exists(query))
         {
+        	//if (true) return false;
+        	debug ("hash exists "+hash);
             return true;            
         }        
         return false;

@@ -23,6 +23,7 @@ public class radiotavisufbleba_ge extends Parser
     	{
     		return;
     	}
+    	debug ("tavisufleba");
     	enable ();
         Value value = null;
         values.clear();
@@ -98,15 +99,16 @@ public class radiotavisufbleba_ge extends Parser
                         topic.author = Text.after(">",(Text.between("href=\"/author", "</a>", result).trim())).trim();
                         
                         article = new Article(value.link, Text.between("<div class=\"zoomMe\">", "<div class=\"authorBioBox\">", result).trim());
-                        article.content = article.content.replaceAll ("<div class='embedded_content_object'\\>(.*?)</div\\></div\\></div\\>", "<img src=\""+value.image+"\">");
+                        debug ("article content is "+Text.between("<div class=\"zoomMe\">", "<div class=\"authorBioBox\">", result));
+/*                        article.content = article.content.replaceAll ("<div class='embedded_content_object'\\>(.*?)</div\\></div\\></div\\>", "<img src=\""+value.image+"\">");
                         article.content = article.content.replaceAll(Text.replaceTagContentWith("div"," class=\"box_with_innerQuote\""), "<br>");
                         article.content = article.content.replaceAll(Text.replaceTagContentWith("p"," id=\"ctl00_ctl00_cpAB_cp1_pTags\" class=\"topintend\""), "<br>");
                         article.content = article.content.replaceAll(Text.replaceTagContent("script"), "");
                         article.content = article.content.replaceAll(Text.replaceTagContent("object"), "");
                         article.content = article.content.replaceAll(Text.replaceTag("div"), "");
                         article.content = article.content.replaceAll("width=\"(.*?)\"", "");
-                        article.content = article.content.replaceAll("height=\"(.*?)\"", "");
-
+                        article.content = article.content.replaceAll("height=\"(.*?)\"", "");*/
+                        
 
                         if (!Text.empty(value.image) && Text.begins("http://", value.image))
                         {
@@ -142,7 +144,7 @@ public class radiotavisufbleba_ge extends Parser
     
     public void debug (String message)
     {
-        //System.out.println ("parser.radiotavisufbleba: "+message);
+        System.out.println ("parser.radiotavisufbleba: "+message);
     }
     
     @Override

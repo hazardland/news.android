@@ -18,6 +18,7 @@ public class ipn_ge extends Parser
     @Override
     public void fetch ()
     {
+    	debug ("FETCHING IPN");
     	if (active())
     	{
     		return;
@@ -40,8 +41,8 @@ public class ipn_ge extends Parser
             disable ();
             return;
         }
-        debug ("url content is: "+text.content.length()+" bytes");
-        debug ("url content is: "+text.content);
+        //debug ("url content is: "+text.content.length()+" bytes");
+        //debug ("url content is: "+text.content);
         while (text.next("<div class=\"othernews_item\">", "<div class=\"othernews_more\">"))
         {
             value = new Value();
@@ -49,7 +50,7 @@ public class ipn_ge extends Parser
             debug ("[title "+value.title+"]");
             if (!Text.empty(value.title))
             {
-                value.icon = Text.between("<img src=\"", "\"", text.result);
+                value.icon = "http:"+Text.between("<img src=\"", "\"", text.result);
                 value.link = Text.between("<div class=\"othernews_title\">", "</div>", text.result); //<div class=\"othernews_title\">
                 value.link = Text.between ("<a href=\"", "\"", text.result);
                 if (!Text.empty(value.link))
@@ -60,7 +61,7 @@ public class ipn_ge extends Parser
                     {
                         value.link = "http://www.interpressnews.ge"+value.link;    
                     }
-                    //debug ("value.title: " + value.title + " value.image: " + value.icon + " " + " value.link: " + value.link + " " + " value.hash: " + value.hash);
+                    debug ("value.title: " + value.title + " value.image: " + value.icon + " " + " value.link: " + value.link + " " + " value.hash: " + value.hash);
                     if (!Text.empty(value.hash) && !exists(value.hash))
                     {
                     	values.add (value);
@@ -92,13 +93,15 @@ public class ipn_ge extends Parser
                     topic.title = value.title;
                     topic.hash = value.hash;
                     
+                    debug("hash "+topic.hash);
+                    
     			    result = text (value.link);
                     if (result!=null)
                     {
-
                         topic.date.set (Text.between("<span class=\"createdate\">", "</span>", result));
 
                         article = new Article(value.link, Text.between("<div class=\"article-content\">", "<div class=\"cls\">", result).trim());
+                        //debug ("article content is "+article.content);
                         if (!Text.empty(article.content))
                         {
                             value.image = Text.between("<img src=\"", "\"", article.content);
@@ -133,6 +136,7 @@ public class ipn_ge extends Parser
                     }
                     else
                     {
+                    	debug ("empty result");
                         topic.delete();
                     }
                 }             
@@ -141,6 +145,10 @@ public class ipn_ge extends Parser
             {
                 refresh();
             }
+        }
+        else
+        {
+        	debug ("EMPTY VALUES");
         }
         values.clear();
         disable ();

@@ -121,7 +121,7 @@ public class Reader
 
     public void debug (String message)
     {
-        System.out.println("reader: "+message);
+        //System.out.println("reader: "+message);
     }
 
 }

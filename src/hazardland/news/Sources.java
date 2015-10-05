@@ -103,7 +103,7 @@ public class Sources extends ListActivity
                 else
                 {
                     source.enabled = true;
-                    //Toast.makeText(Sources.this, source.caption+" გააქტიურდა", Toast.LENGTH_SHORT).show();
+                    ///Toast.makeText(Sources.this, source.caption+" გააქტიურდა", Toast.LENGTH_SHORT).show();;
                     //ImageView.class.cast(view.findViewById(R.id.source_icon)).setImageResource(R.drawable.source_enabled);
                 }
                 adapter.notifyDataSetChanged();
@@ -116,7 +116,7 @@ public class Sources extends ListActivity
         message = new Message ((LinearLayout)findViewById(R.id.sources_message), font, R.id.sources_message_content, R.id.sources_message_close, R.id.sources_message_action);
         if (Main.setting.channel)
         {
-            message.show ("არხის ჩასართველად ან ამოსართველად გააჩერეთ თითი შესაბამისი არხის სათაურზე და დაელოდეთ არხის ზოლის ფერის შეცვლას.\n\nარხის პოზიციის შესაცვლელად გადაადგილეთ არხი ზემოთ ან ქვემოთ, არხის ფერად ზოლზე თითის დაჭერით.");
+        	message.show ("არხის ჩასართველად ან ამოსართველად გააჩერეთ თითი შესაბამისი არხის სათაურზე და დაელოდეთ არხის ზოლის ფერის შეცვლას.\n\nარხის პოზიციის შესაცვლელად გადაადგილეთ არხი ზემოთ ან ქვემოთ, არხის ფერად ზოლზე თითის დაჭერით.");
             Main.setting.channel = false;
             Main.database.settings.save (Main.setting);
         }

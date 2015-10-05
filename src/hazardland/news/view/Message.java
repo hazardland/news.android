@@ -68,7 +68,7 @@ public class Message implements OnClickListener
             this.command = input;
             if (command.type.equalsIgnoreCase("update"))
             {
-                action.setText ("განახლება");
+            	action.setText ("განახლება");
                 action.setVisibility (View.VISIBLE);
             }
             else
@@ -92,7 +92,7 @@ public class Message implements OnClickListener
         view.setVisibility(View.INVISIBLE);
         
         Query query = new Query (Main.database.commands);
-        query.where.query = "commands.view=0";
+        query.where.string = "command.view=0";
         query.limit.count = 1;
         ArrayList<Command> commands = Main.database.commands.load(query);
         if (commands!=null && commands.size()>0)

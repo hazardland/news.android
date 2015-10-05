@@ -10,7 +10,7 @@ public class ipn_ge_1 extends ipn_ge
 
     public void debug (String message)
     {
-        //System.out.println ("parser.ipn: "+message);
+        System.out.println ("parser.ipn: "+message);
     }
 
     @Override

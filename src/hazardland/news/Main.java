@@ -35,7 +35,7 @@ public class Main extends Application
     private static float previous = 0;
     public Server server;
     public static Setting setting;
-    public static boolean update = false;
+    public static boolean update = true;
     @Override
     public void onCreate()
     {
