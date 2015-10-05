@@ -85,10 +85,7 @@ public class Notes extends SQLiteOpenHelper
 			  }
 			  while (cursor.moveToNext());
 		  }
-<<<<<<< HEAD
-		  debug ("row count is "+cursor.getCount());
-=======
->>>>>>> 493e492af023f59b3492e3abd1cf033d47710f77
+		  //debug ("row count is "+cursor.getCount());
 		  database.close();
 		  return result;
 	}
